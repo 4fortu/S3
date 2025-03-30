@@ -1,7 +1,10 @@
-AWSTemplateFormatVersion: 2019-09-09
-Resorces:
+#AWSTemplateFormatVersion: 2019-09-09
+# Description of what this change includes
+# Revision number
+# Date:2025-03-25
+Resources:
   S3Bucket:
-    Type: 'AWS:S3:Bucket'
+    Type: 'AWS::S3::Bucket'
     Properties:
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
@@ -13,8 +16,8 @@ Resorces:
         ErrorDocument: error.html
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
-BucketPolicy:
-    #Type: 'AWS::S3::BucketPolicy'
+  BucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
     Properties:
       PolicyDocument:
         Id: MyPolicy
@@ -35,7 +38,7 @@ Outputs:
     Value: !GetAtt 
       - S3Bucket
       - WebsiteURL
-    Description: URL for website hosted on S3
+    #Description: URL for website hosted on S3
   S3BucketSecureURL:
     Value: !Join 
       - ''
@@ -43,4 +46,4 @@ Outputs:
         - !GetAtt 
           - S3Bucket
           - DomainName
-    Description: Name of S3 bucket to hold website content
+    #Description: Name of S3 bucket to hold website content
